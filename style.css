@@ -1,0 +1,84 @@
+.hide {
+  display: none;
+}
+
+.book-img img {
+  width: 100%;
+  height: auto;
+  max-width: 360px;
+}
+
+.book-img img:hover {
+  filter: brightness(150%);
+}
+
+.rank-chip {
+  background-color: #C45500;
+  font-size: 0.8em;
+  color: #fff;
+  padding: 5px;
+  position: relative;
+  z-index: 3;
+  width: 44px;
+  display: inline-flex;
+}
+
+.rank-chip::after {
+  position: absolute;
+  clear: both;
+  display: block;
+  content: "";
+  line-height: 0;
+  font-size: 0;
+  width: 0; 
+  height: 0;
+  right: -24%;
+  top: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 33px solid #C45500;
+  z-index: -1;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  z-index: 10;
+  color: #aaa;
+
+  transition: all 300ms ease-in-out;
+}
+
+.fav-btn.favored {
+  background-color: red;
+  color: #fff;
+}
+
+.decription {
+  height: 4.8em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1.2em;
+}
+
+@media only screen and (min-width: 1024px) {
+  #result-list {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+
+  #result-list li {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+#search-query {
+  height: auto;
+}
+
+.card-img img {
+  max-width: 100%;
+}
