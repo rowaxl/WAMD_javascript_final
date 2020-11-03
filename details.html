@@ -6,15 +6,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="style.css">
-  <script src="env.js"></script>
-  <script src="bookItem.js"></script>
-  <title>Book Details</title>
+  <script src="details.js"></script>
+  <title>Show Details</title>
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid">
     <div class="card my-3">
       <div class="card-header d-flex justify-content-between">
-        <span id="book-title" class="h2"></span>
+        <span id="result" class="h2"></span>
 
         <button id="btn-auth" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-auth">
           Authorize
@@ -23,8 +22,32 @@
     </div>
 
     <div class="my-2 card" id="results">
-      <h2 id="result-text"></h2>
-      <div id="result-detail" class="card-body">
+      <div class="row no-gutters">
+        <div id="show-img-container" class="col-lg-5 col-12 card-img"></div>
+
+        <div class="col-lg-7 col-12">
+          <div class="card-body">
+            <h4 id="show-title" class="card-title mr-4"></h4>
+            <h6 id="season-counter" class="card-subtitle"></h4>
+            <div id="score-container" class="card-text">
+              <h6 class="score-label">User Scores</h6>
+              <div class="score-indicator">
+                <svg>
+                  <g>
+                    <circle cx="0" cy="0" r="20" stroke="black" class="animated-circle" transform="translate(50,50) rotate(-90)" />
+                  </g>
+                  <g>
+                    <circle cx="0" cy="0" r="38" transform="translate(50,50) rotate(-90)" />
+                  </g>
+                </svg>
+                <div class="score-count"></div>
+              </div>
+            </div>
+            <p id="rate-count" class="card-text my-2"></p>
+            <p id="show-popular" class="card-text my-2"></p>
+            <p id="show-overview" class="card-text my-2"></p>
+          </div>
+        </div>
       </div>
     </div>
 
