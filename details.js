@@ -131,7 +131,7 @@ $(() => {
   }
 
   function toggleFavButton(id) {
-    const isFaved = favorited.find(show => show.id === id);
+    const isFaved = favorited.find(favedShowId => favedShowId === id);
 
     if (isFaved) {
       buttonFav.addClass('favored')

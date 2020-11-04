@@ -23,22 +23,22 @@ $(() => {
   const inputKey = $('#input-key');
   const buttonSave = $('#btn-save-key');
 
-  const favourited = localStorage.getItem('fav-shows') ? JSON.parse(localStorage.getItem('fav-shows')) : [];
+  const favorited = localStorage.getItem('fav-shows') ? JSON.parse(localStorage.getItem('fav-shows')) : [];
 
   // functions
   function handleFavourite() {
     const target = $(this).data('show-id')
-    const index = favourited.findIndex(id => id === target)
+    const index = favorited.findIndex(id => id === target)
 
     if (index > -1) {
-      favourited.splice(index, 1);
+      favorited.splice(index, 1);
       $(this).removeClass('favored');
     } else {
-      favourited.push(target);
+      favorited.push(target);
       $(this).addClass('favored');
     }
 
-    localStorage.setItem('fav-shows', JSON.stringify(favourited));
+    localStorage.setItem('fav-shows', JSON.stringify(favorited));
 
     loadFavored();
   }
@@ -122,9 +122,9 @@ $(() => {
   }
 
   async function loadFavored() {
-    if (favourited.length < 1) return renderError('No favorites');
+    if (favorited.length < 1) return renderError('No favorites');
 
-    const results = await Promise.all(favourited.map(id => getShowDetail(id)));
+    const results = await Promise.all(favorited.map(id => getShowDetail(id)));
 
     renderResults(results)
   }
