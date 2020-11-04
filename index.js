@@ -56,35 +56,34 @@ $(() => {
     resultCard.removeClass('hide');
     resultText.removeClass('text-danger');
 
-    resultText.text(`${results.length} Book found:`);
+    resultText.text(`${results.length} TV program found:`);
 
     resultList.empty();
 
-    results.forEach((book, index) => {
+    results.forEach((tv, index) => {
       const bookItem = $(`<li></li>`);
       bookItem
-        .attr('id', book.isbn10)
+        .attr('id', tv.id)
         .addClass('list-group-item')
         .html(`
         <div class="card border-none">
           <div class="row no-gutters">
             <div class="col-sm-5">
-              <a class="book-img" href="${bookItemURL}?id=${book.id}&title=${book.title}" target="_blank">
-                <img class="card-img" src="${book.imageLinks.thumbnail}" alt="${book.title}">
+              <a class="book-img" href="${bookItemURL}?id=${tv.id}&title=${tv.name}" target="_blank">
+                <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/${tv.posterPath}" alt="${tv.name}">
               </a>
             </div>
             <div class="col-sm-7">
               <div class="card-body">
                 <h4 class="card-title mr-4">
                   <span class="mr-2 rank-chip">#${String(index + 1).padStart(2, '0')}</span>
-                  ${book.title}
+                  ${tv.name}
                 </h4>
-                <h5 class="card-subtitle my-2">${book.authors}</h5>
-                <div class="card-text decription">${book.description ? book.description : ''}</div>
+                <h5 class="card-subtitle my-2">${tv.voteAverage}</h5>
               </div>
             </div>
 
-            <button class="fav-btn btn rounded-circle ${book.isFavourite ? 'favored' : ''}" data-book-id="${book.id}">
+            <button class="fav-btn btn rounded-circle ${tv.isFavourite ? 'favored' : ''}" data-book-id="${tv.id}">
               <svg width = "1em" height = "1em" viewBox = "0 0 16 16" class= "bi bi-heart-fill" fill = "currentColor" xmlns = "http://www.w3.org/2000/svg" >
                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
               </svg>
@@ -108,14 +107,14 @@ $(() => {
   }
 
   function getBookList(query) {
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&api-key=${API_KEY}`
+    const url = `https://api.themoviedb.org/3/tv/popular?q=${query}&api_key=${API_KEY}`
 
     return new Promise((resolve, reject) => {
       $.ajax({
         url,
         dataType: 'json',
         success: (res) => {
-          resolve(sanitizeBookData(res.items));
+          resolve(sanitizeBookData(res.results));
         },
         error: (res) => {
           reject(res)
@@ -124,27 +123,25 @@ $(() => {
     })
   }
 
-  function isFavourited(isbn) {
-    return favourited.includes(isbn)
+  function isFavourited(id) {
+    return favourited.includes(id)
   }
 
-  function sanitizeBookData(results) {
-    let books = []
+  function sanitizeBookData(data) {
+    let tvs = []
     try {
-      books = results.map(data => ({
-        id: data.id,
-        title: data.volumeInfo.title,
-        authors: data.volumeInfo.authors.join(', '),
-        publishedDate: data.volumeInfo.publishedDate,
-        description: data.volumeInfo.description,
-        imageLinks: data.volumeInfo.imageLinks,
-        isFavourite: isFavourited(data.id)
+      tvs = data.map(tv => ({
+        id: tv.id,
+        name: tv.name,
+        posterPath: tv.poster_path,
+        voteAverage: tv.vote_average,
+        isFavourite: isFavourited(tv.id)
       }))
     } catch (e) {
       console.error(e)
     }
-
-    return books
+    console.log(tvs)
+    return tvs
   }
 
   function saveAPIKey() {

@@ -2,6 +2,54 @@
   display: none;
 }
 
+.navbar-brand{
+  font-weight: 800;
+}
+
+.material-icons{
+  padding: 0;
+  margin: 0 auto;
+  vertical-align: text-bottom;
+  color: rgb(224, 13, 13);
+}
+.book-img img {
+  width: 100%;
+  height: auto;
+  max-width: 360px;
+}
+
+.book-img img:hover {
+  filter: brightness(150%);
+}
+
+.rank-chip {
+  background-color: #C45500;
+  font-size: 0.8em;
+  color: #fff;
+  padding: 5px;
+  position: relative;
+  z-index: 3;
+  width: 44px;
+  display: inline-flex;
+}
+
+.rank-chip::after {
+  position: absolute;
+  clear: both;
+  display: block;
+  content: "";
+  line-height: 0;
+  font-size: 0;
+  width: 0;
+  height: 0;
+  right: -24%;
+  top: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 33px solid #C45500;
+  z-index: -1;
+}
+
 .fav-btn {
   position: absolute;
   width: 40px;
@@ -12,6 +60,13 @@
   color: #aaa;
 
   transition: all 300ms ease-in-out;
+}
+
+.container{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
 }
 
 .fav-btn.favored {
@@ -27,9 +82,24 @@
   line-height: 1.2em;
 }
 
+footer{
+  width: 100%;
+  color: rgb(101, 101, 101);
+  text-align: center;
+  position: absolute;
+  bottom: 0%;
+}
+
+@media only screen and (min-width: 1024px) {
+  #result-list {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+
 .card-img img {
   max-width: 100%;
 }
+
 
 .card-img img:hover{
   filter: brightness(110%);
@@ -44,6 +114,47 @@
   overflow: hidden;
 }
 
+
+.card-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.description{
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  margin: 0 auto;
+  transform: translate(-50%,-50%);
+  background: linear-gradient(-45deg,#fcfcfc, #d5d5d5);
+  padding: 40px;
+}
+.tmdb_logo{
+  width: 6%;
+  height: 6%;
+  margin-left: 20px;
+
+}
+
+section h3{
+  margin-bottom: 20px;
+  color: rgb(106, 102, 102);
+}
+.sec_2{
+  display: flex;
+  margin-top: 30px;
+}
+
+.sec_2 p{
+  font-size: small;
+  font-weight: bold;
+  color: rgb(160, 160, 160);
+}
+
+a:hover{
+  text-decoration: none;
+=======
 .score-indicator {
   position: relative;
   width: 100px;
