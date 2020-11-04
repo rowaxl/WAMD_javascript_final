@@ -34,7 +34,7 @@
     <div class="container">
     <div class="card my-3">
       <div class="card-header d-flex justify-content-between">
-        <span class="h2">Enter the title for searching book</span>
+        <span class="h2">Enter the title for searching TV program</span>
 
         <button id="btn-auth" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-auth">
           Authorize
@@ -60,6 +60,18 @@
     <div class="my-2 card hide" id="results">
       <div class="card-header">
         <h2 id="result-text"></h2>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort by
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Featured</a>
+            <a class="dropdown-item" href="#">Sort A to Z</a>
+            <a class="dropdown-item" href="#">Sort Z to A</a>
+            <a class="dropdown-item" href="#">Sort Newest to Oldest</a>
+            <a class="dropdown-item" href="#">Sort Oldest to Newest</a>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <ul id="result-list" class="list-group">

@@ -30,7 +30,7 @@
   content: "";
   line-height: 0;
   font-size: 0;
-  width: 0; 
+  width: 0;
   height: 0;
   right: -24%;
   top: 0;
@@ -81,4 +81,9 @@
 
 .card-img img {
   max-width: 100%;
+}
+
+.card-header{
+  display: flex;
+  justify-content: space-between;
 }

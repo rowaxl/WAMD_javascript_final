@@ -56,7 +56,7 @@ $(() => {
     resultCard.removeClass('hide');
     resultText.removeClass('text-danger');
 
-    resultText.text(`${results.length} Book found:`);
+    resultText.text(`${results.length} TV program found:`);
 
     resultList.empty();
 
