@@ -13,8 +13,12 @@ const aspects = {
 
 $(() => {
   let API_KEY = null;
+  // const favorited = localStorage.getItem('fav-shows') ? localStorage.getItem('fav-shows') : []
+  const favorited = [{ id:82856 }]
+
   const result = $('#result');
   const buttonSave = $('#btn-save-key');
+  const buttonFav = $('.fav-btn');
   const imgContainer = $('#show-img-container');
   const showTitle = $('#show-title');
   const popularity = $('#show-popular');
@@ -46,6 +50,7 @@ $(() => {
 
   function sanitizeShowDetail(res) {
     return ({
+      id: res.id,
       title: res.name,
       posterPath: res.backdrop_path,
       firstAir: res.first_air_date.substring(0, 4),
@@ -86,7 +91,11 @@ $(() => {
       renderError(error.status);
     });
 
-    if (detail) renderDetail(detail);
+    if (!detail) return
+
+    renderDetail(detail);
+    toggleFavButton(detail.id);
+    fetchFavButtonID(detail.id);
   }
 
   function renderDetail(detail) {
@@ -120,6 +129,18 @@ $(() => {
     const errorMessage = ERROR_MESSAGE[errorStatus] ? ERROR_MESSAGE[errorStatus] : 'Unknown error occured. Please wait and try again later.';
     result.text(errorMessage);
     result.addClass('text-danger');
+  }
+
+  function toggleFavButton(id) {
+    const isFaved = favorited.find(show => show.id === id);
+
+    if (isFaved) {
+      buttonFav.addClass('favored')
+    }
+  }
+
+  function fetchFavButtonID(id) {
+    buttonFav.data('show-id', id);
   }
 
   // execute when page loaded

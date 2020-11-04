@@ -4,8 +4,10 @@
 
 .fav-btn {
   position: absolute;
+  width: 40px;
+  height: 40px;
   top: 15px;
-  right: 5px;
+  right: 20px;
   z-index: 10;
   color: #aaa;
 
@@ -31,10 +33,11 @@
 
 #score-container {
   display: flex;
-  width: 40%;
+  width: 200px;
   position: relative;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .score-indicator {
@@ -54,15 +57,15 @@
   color: #122e3f
 }
 
-svg {
+.score-indicator svg {
   position: absolute
 }
 
-circle {
+.score-indicator circle {
   fill: rgba(255, 255, 255, 0.9)
 }
 
-svg .animated-circle {
+.score-indicator svg .animated-circle {
   fill: transparent;
   stroke-width: 40px;
   stroke: #1b6cb3;
@@ -89,7 +92,7 @@ svg .animated-circle {
   }
 
   #score-container {
-    width: 200px;
+    width: 250px;
   }
 
   p {
