@@ -70,7 +70,7 @@ $(() => {
           <div class="row no-gutters">
             <div class="col-sm-5">
               <a class="book-img" href="${bookItemURL}?id=${tv.id}&title=${tv.name}" target="_blank">
-                <img class="card-img" src="${tv.posterPath}" alt="${tv.name}">
+                <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/${tv.posterPath}" alt="${tv.name}">
               </a>
             </div>
             <div class="col-sm-7">
