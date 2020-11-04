@@ -63,7 +63,7 @@ $(() => {
     results.forEach((tv, index) => {
       const bookItem = $(`<li></li>`);
       bookItem
-        .attr('id', tv.isbn10)
+        .attr('id', tv.id)
         .addClass('list-group-item')
         .html(`
         <div class="card border-none">
@@ -123,8 +123,8 @@ $(() => {
     })
   }
 
-  function isFavourited(isbn) {
-    return favourited.includes(isbn)
+  function isFavourited(id) {
+    return favourited.includes(id)
   }
 
   function sanitizeBookData(data) {
@@ -135,6 +135,7 @@ $(() => {
         name: tv.name,
         posterPath: tv.poster_path,
         voteAverage: tv.vote_average,
+        isFavourite: isFavourited(tv.id)
       }))
     } catch (e) {
       console.error(e)

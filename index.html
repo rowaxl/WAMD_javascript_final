@@ -4,15 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="style.css">
+
   <script src="env.js"></script>
   <script src="index.js"></script>
-  <title>Search your Books!</title>
+  <title>TV Show program</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">TV program</a>
+      <a class="navbar-brand" href="index.html">TV Show program
+        <span class="material-icons">
+        live_tv
+        </span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,13 +25,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Discover</a>
+            <a class="nav-link" href="discover.html">Discover</a>
           </li>
         </ul>
       </div>
@@ -34,7 +39,7 @@
     <div class="container">
     <div class="card my-3">
       <div class="card-header d-flex justify-content-between">
-        <span class="h2">Enter the title for searching TV program</span>
+        <span class="h2">Enter the keyword for searching TV program</span>
 
         <button id="btn-auth" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-auth">
           Authorize
@@ -43,7 +48,7 @@
       <div class="card-body">
         <form id="form-search-book">
           <div class="input-group mb-3">
-            <input id="search-query" type="text" class="form-control" placeholder="Enter the title for search" aria-label="Book title">
+            <input id="search-query" type="text" class="form-control" placeholder="Enter the keyword" aria-label="Book title">
             <div class="input-group-append">
               <button class="btn btn-primary" id="btn-add" type="submit">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +110,18 @@
         </div>
       </div>
     </div>
+    <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="index.html"> TVshowprogram.com</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
   </div>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
