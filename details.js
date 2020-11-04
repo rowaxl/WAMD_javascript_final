@@ -13,8 +13,7 @@ const aspects = {
 
 $(() => {
   let API_KEY = null;
-  // const favorited = localStorage.getItem('fav-shows') ? localStorage.getItem('fav-shows') : []
-  const favorited = [{ id:82856 }]
+  const favorited = localStorage.getItem('fav-shows') ? localStorage.getItem('fav-shows') : []
 
   const result = $('#result');
   const buttonSave = $('#btn-save-key');
