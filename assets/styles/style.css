@@ -130,11 +130,11 @@ footer{
   background: linear-gradient(-45deg,#fcfcfc, #d5d5d5);
   padding: 40px;
 }
+
 .tmdb_logo{
   width: 6%;
   height: 6%;
   margin-left: 20px;
-
 }
 
 section h3{
@@ -154,7 +154,8 @@ section h3{
 
 a:hover{
   text-decoration: none;
-=======
+}
+
 .score-indicator {
   position: relative;
   width: 100px;

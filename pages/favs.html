@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <script src="details.js"></script>
-  <title>Show Details</title>
+  <link rel="stylesheet" href="assests/styles/style.css">
+  <script src="assests/js/favs.js"></script>
+  <title>Your Favorite TV Shows</title>
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <div class="card my-3">
       <div class="card-header d-flex justify-content-between">
-        <span id="result" class="h2"></span>
+        <span class="h2">Your Favorite TV Shows</span>
 
         <button id="btn-auth" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-auth">
           Authorize
@@ -21,39 +21,14 @@
       </div>
     </div>
 
-    <div class="my-2 card" id="results">
-      <div class="row no-gutters">
-        <div id="show-img-container" class="col-lg-5 col-12 card-img"></div>
+    <div class="my-2 card hide" id="results">
+      <div class="card-header">
+        <h2 id="result-text"></h2>
+      </div>
+      <div class="card-body">
+        <ul id="result-list" class="list-group">
 
-        <div class="col-lg-7 col-12">
-          <div class="card-body">
-            <h4 id="show-title" class="card-title mr-4"></h4>
-            <h6 id="season-counter" class="card-subtitle"></h4>
-            <div id="score-container" class="card-text">
-              <h6 class="score-label">User Scores</h6>
-              <div class="score-indicator">
-                <svg>
-                  <g>
-                    <circle cx="0" cy="0" r="20" stroke="black" class="animated-circle" transform="translate(50,50) rotate(-90)" />
-                  </g>
-                  <g>
-                    <circle cx="0" cy="0" r="38" transform="translate(50,50) rotate(-90)" />
-                  </g>
-                </svg>
-                <div class="score-count"></div>
-              </div>
-            </div>
-            <p id="rate-count" class="card-text my-2"></p>
-            <p id="show-popular" class="card-text my-2"></p>
-            <p id="show-overview" class="card-text my-2"></p>
-
-            <button class="fav-btn btn rounded-circle">
-              <svg width = "1em" height = "1em" viewBox = "0 0 16 16" class= "bi bi-heart-fill" fill = "currentColor" xmlns = "http://www.w3.org/2000/svg" >
-                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+        </ul>
       </div>
     </div>
 
