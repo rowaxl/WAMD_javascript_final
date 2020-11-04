@@ -102,8 +102,8 @@ $(() => {
     showTitle.text(`${detail.title} (${detail.firstAir})`);
 
     const picture = $("<picture></picture>");
-    picture.append(`<source media="(max-width: 640px)" srcset="${posterBaseURL}${aspects.small}_bestv2/${detail.posterPath}">`);
-    picture.append(`<img src="${posterBaseURL}${aspects.large}_bestv2/${detail.posterPath}">`);
+    picture.append(`<source media="(min-width: 768px)" srcset="${posterBaseURL}${aspects.large}_bestv2/${detail.posterPath}">`);
+    picture.append(`<img src="${posterBaseURL}${aspects.small}_bestv2/${detail.posterPath}">`);
     imgContainer.append(picture)
 
     showOverview.text(detail.overview);

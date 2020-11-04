@@ -31,6 +31,10 @@
   max-width: 100%;
 }
 
+.card-img img:hover{
+  filter: brightness(110%);
+}
+
 #score-container {
   display: flex;
   width: 200px;
