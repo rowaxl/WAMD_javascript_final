@@ -79,7 +79,9 @@ $(() => {
                   <span class="mr-2 rank-chip">#${String(index + 1).padStart(2, '0')}</span>
                   ${tv.name}
                 </h4>
-                <h5 class="card-subtitle my-2">${tv.voteAverage}</h5>
+                <h5 class="card-subtitle my-2"><span class="material-icons">
+                trending_up
+                </span>${tv.voteAverage}</h5>
               </div>
             </div>
 
