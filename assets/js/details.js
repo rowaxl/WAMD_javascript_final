@@ -13,7 +13,7 @@ const aspects = {
 
 $(() => {
   let API_KEY = null;
-  const favorited = localStorage.getItem('fav-shows') ? localStorage.getItem('fav-shows') : []
+  const favourited = localStorage.getItem('fav-shows') ? JSON.parse(localStorage.getItem('fav-shows')) : []
 
   const result = $('#result');
   const buttonSave = $('#btn-save-key');
@@ -47,6 +47,25 @@ $(() => {
     })
   }
 
+  function handleFavourite() {
+    const target = $(this).data('show-id')
+    const index = favourited.findIndex(id => id === target)
+
+    if (index > -1) {
+      favourited.splice(index, 1);
+      $(this).removeClass('favored');
+    } else {
+      favourited.push(target);
+      $(this).addClass('favored');
+    }
+
+    localStorage.setItem('fav-shows', JSON.stringify(favourited));
+  }
+
+  function isFavourited(id) {
+    return favourited.includes(id)
+  }
+
   function sanitizeShowDetail(res) {
     return ({
       id: res.id,
@@ -59,7 +78,8 @@ $(() => {
       votes: {
         avg: res.vote_average,
         count: res.vote_count
-      }
+      },
+      isFavourite: isFavourited(res.id)
     })
   }
 
@@ -93,7 +113,6 @@ $(() => {
     if (!detail) return
 
     renderDetail(detail);
-    toggleFavButton(detail.id);
     fetchFavButtonID(detail.id);
   }
 
@@ -115,6 +134,7 @@ $(() => {
     rateCount.text(`${detail.votes.count} Ratings`);
 
     percentageText.text(`${detail.votes.avg * 10}`)
+    toggleFavButton(detail.isFavourite)
     renderPercentage(detail.votes.avg * 0.1);
   }
 
@@ -130,12 +150,10 @@ $(() => {
     result.addClass('text-danger');
   }
 
-  function toggleFavButton(id) {
-    const isFaved = favorited.find(favedShowId => favedShowId === id);
+  function toggleFavButton(isFav) {
+    if (!isFav) return
 
-    if (isFaved) {
-      buttonFav.addClass('favored')
-    }
+    buttonFav.addClass('favored')
   }
 
   function fetchFavButtonID(id) {
@@ -147,4 +165,5 @@ $(() => {
   loadDetails();
 
   buttonSave.on('click', saveAPIKey);
-})
+  buttonFav.on('click', handleFavourite);
+  })
