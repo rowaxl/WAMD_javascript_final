@@ -16,7 +16,8 @@ const aspects = {
 $(() => {
     // variables and selectors
     let API_KEY = '';
-    const searchForm = $('#search-query');
+    const searchForm = $('#form-search-book');
+    const searchInput = $ ('#search-query');
     const resultCard = $('#results');
     const resultText = $('#result-text');
     const resultList = $('#result-list');
@@ -70,8 +71,8 @@ $(() => {
         results.forEach(data => {
             const showItem = $(`<li></li>`);
 
-            const smlImgURL = show.posterPath ? `${posterBaseURL}${aspects.small}_bestv2/${show.posterPath}` : 'https://via.placeholder.com/533x300.png/fff/?text=Image+Not+Found';
-            const lrgImgURL = show.posterPath ? `${posterBaseURL}${aspects.large}_bestv2/${show.posterPath}` : 'https://via.placeholder.com/1066x600.png/fff/?text=Image+Not+Found';
+            const smlImgURL = data.img ? `${posterBaseURL}${aspects.small}_bestv2/${data.img}` : 'https://via.placeholder.com/533x300.png/fff/?text=Image+Not+Found';
+            const lrgImgURL = data.img ? `${posterBaseURL}${aspects.large}_bestv2/${data.img}` : 'https://via.placeholder.com/1066x600.png/fff/?text=Image+Not+Found';
 
             showItem
                 .attr('id', data.id)
@@ -97,13 +98,14 @@ $(() => {
                             <div class="score-indicator">
                                 <svg>
                                     <g>
-                                        <circle cx="0" cy="0" r="20" stroke="black" class="animated-circle" transform="translate(50,50) rotate(-90)" data-score=${data.vote_average * 0.1} />
+
+                <circle cx="0" cy="0" r="20" stroke="black" class="animated-circle" transform="translate(50,50) rotate(-90)" data-score=${data.voteAverage * 0.1} />
                                     </g>
                                     <g>
                                         <circle cx="0" cy="0" r="38" transform="translate(50,50) rotate(-90)" />
                                     </g>
                                 </svg>
-                                <div class="score-count">${data.vote_average * 10}</div>
+                                <div class="score-count">${data.voteAverage * 10}</div>
                             </div>
                         </div>
                         </div>
