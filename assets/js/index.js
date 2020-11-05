@@ -5,7 +5,7 @@ const ERROR_MESSAGE = {
   '503': 'Internal Error occured. Please wait a moment and try again.',
 }
 
-const detailURL = '/pages/details.html'
+const detailURL = 'pages/details.html'
 const posterBaseURL = 'https://image.tmdb.org/t/p/'
 const aspects = {
   small: 'w300_and_h450',
