@@ -120,9 +120,12 @@ $(() => {
     result.text(`The TV Show Finder`)
     showTitle.text(`${detail.title} (${detail.firstAir})`);
 
+    const smlImgURL = detail.posterPath ? `${posterBaseURL}${aspects.small}_bestv2/${detail.posterPath}` : 'https://via.placeholder.com/533x300.png/fff/?text=Image+Not+Found';
+    const lrgImgURL = detail.posterPath ? `${posterBaseURL}${aspects.large}_bestv2/${detail.posterPath}` : 'https://via.placeholder.com/1066x600.png/fff/?text=Image+Not+Found';
+
     const picture = $("<picture></picture>");
-    picture.append(`<source media="(min-width: 768px)" srcset="${posterBaseURL}${aspects.large}_bestv2/${detail.posterPath}">`);
-    picture.append(`<img src="${posterBaseURL}${aspects.small}_bestv2/${detail.posterPath}">`);
+    picture.append(`<source media="(min-width: 768px)" srcset="${lrgImgURL}">`);
+    picture.append(`<img src="${smlImgURL}">`);
     imgContainer.append(picture)
 
     showOverview.text(detail.overview);
