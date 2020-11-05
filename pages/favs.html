@@ -4,20 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <script src="favs.js"></script>
-  <title>Your Favorite TV Shows</title>
+  <link rel="stylesheet" href="/assets/styles/style.css">
+  <script src="/assets/js/favs.js"></script>
+  <title>Your Favorites</title>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">
+      TV Show program
+
+      <span class="material-icons">
+      live_tv
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="discover.html">Discover</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="favs.html">Favorites<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+
+      <button id="btn-auth" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-auth">
+        Authorize
+      </button>
+    </div>
+  </nav>
+
   <div class="container">
     <div class="card my-3">
       <div class="card-header d-flex justify-content-between">
-        <span class="h2">Your Favorite TV Shows</span>
-
-        <button id="btn-auth" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-auth">
-          Authorize
-        </button>
+        <span class="h2">Your Favorites</span>
       </div>
     </div>
 
