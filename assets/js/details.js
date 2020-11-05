@@ -14,6 +14,7 @@ const aspects = {
 $(() => {
   let API_KEY = null;
   const favourited = localStorage.getItem('fav-shows') ? JSON.parse(localStorage.getItem('fav-shows')) : []
+  console.log(favourited)
 
   const result = $('#result');
   const buttonSave = $('#btn-save-key');

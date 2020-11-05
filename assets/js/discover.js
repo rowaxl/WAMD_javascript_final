@@ -8,42 +8,40 @@ const ERROR_MESSAGE = {
 const detailURL = 'details.html'
 const posterBaseURL = 'https://image.tmdb.org/t/p/'
 const aspects = {
-    small: 'w533_and_h300',
-    large: 'w1066_and_h600',
+    small: 'w300_and_h450',
+    large: 'w600_and_h900',
 }
-
 
 $(() => {
     // variables and selectors
     let API_KEY = '';
-    const searchForm = $('#form-search-book');
+    const searchForm = $('#form-search-show');
     const searchInput = $ ('#search-query');
     const resultCard = $('#results');
     const resultText = $('#result-text');
     const resultList = $('#result-list');
+    const sortItems = $('.sort-item');
 
     const inputKey = $('#input-key');
     const buttonSave = $('#btn-save-key');
 
-    const favourited = localStorage.getItem('favourited') ? JSON.parse(localStorage.getItem('favourited')) : [];
+    const favourited = localStorage.getItem('fav-shows') ? JSON.parse(localStorage.getItem('fav-shows')) : [];
 
     // functions
     async function searchTvs(e) {
         e.preventDefault();
-        console.log("Hello");
 
-        const query = searchInput.val();
+        const query = searchInput.val() ? searchInput.val() : 2020;
 
         const result = await getTvList(query)
-        .catch((error) => {
-            console.error(error)
-            return renderError(error.status);
-        });
+            .catch((error) => {
+                console.error(error)
+                return renderError(error.status);
+            });
 
         if (!result) return;
 
         renderResults(result);
-
     }
 
     function handleFavourite() {
@@ -51,14 +49,14 @@ $(() => {
         const index = favourited.findIndex(id => id === target)
 
         if (index > -1) {
-        favourited.splice(index, 1);
-        $(this).removeClass('favored');
+            favourited.splice(index, 1);
+            $(this).removeClass('favored');
         } else {
-        favourited.push(target);
-        $(this).addClass('favored');
+            favourited.push(target);
+            $(this).addClass('favored');
         }
 
-        localStorage.setItem('favourited', JSON.stringify(favourited));
+        localStorage.setItem('fav-shows', JSON.stringify(favourited));
     }
 
     function renderResults(results) {
@@ -71,8 +69,8 @@ $(() => {
         results.forEach(data => {
             const showItem = $(`<li></li>`);
 
-            const smlImgURL = data.img ? `${posterBaseURL}${aspects.small}_bestv2/${data.img}` : 'https://via.placeholder.com/533x300.png/fff/?text=Image+Not+Found';
-            const lrgImgURL = data.img ? `${posterBaseURL}${aspects.large}_bestv2/${data.img}` : 'https://via.placeholder.com/1066x600.png/fff/?text=Image+Not+Found';
+            const smlImgURL = data.img ? `${posterBaseURL}${aspects.small}_bestv2/${data.img}` : 'https://via.placeholder.com/300x450.png/fff/?text=Image+Not+Found';
+            const lrgImgURL = data.img ? `${posterBaseURL}${aspects.large}_bestv2/${data.img}` : 'https://via.placeholder.com/600x900.png/fff/?text=Image+Not+Found';
 
             showItem
                 .attr('id', data.id)
@@ -98,8 +96,7 @@ $(() => {
                             <div class="score-indicator">
                                 <svg>
                                     <g>
-
-                <circle cx="0" cy="0" r="20" stroke="black" class="animated-circle" transform="translate(50,50) rotate(-90)" data-score=${data.voteAverage * 0.1} />
+                                        <circle cx="0" cy="0" r="20" stroke="black" class="animated-circle" transform="translate(50,50) rotate(-90)" data-score=${data.voteAverage * 0.1} />
                                     </g>
                                     <g>
                                         <circle cx="0" cy="0" r="38" transform="translate(50,50) rotate(-90)" />
@@ -111,7 +108,7 @@ $(() => {
                         </div>
                     </div>
         
-                    <button class="fav-btn btn rounded-circle favored" data-show-id="${data.id}">
+                    <button class="fav-btn btn rounded-circle ${data.isFavourite ? 'favored' : ''}" data-show-id="${data.id}">
                         <svg width = "1em" height = "1em" viewBox = "0 0 16 16" class= "bi bi-heart-fill" fill = "currentColor" xmlns = "http://www.w3.org/2000/svg" >
                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                         </svg>
@@ -123,6 +120,14 @@ $(() => {
             resultList.append(showItem);
         })
 
+        $('.fav-btn').unbind().click(handleFavourite);
+        renderPercentage();
+    }
+
+    function renderPercentage() {
+        const circle = $('.animated-circle');
+        const circle_offset = 126 * parseFloat(circle.data('score'));
+        circle.css({ "stroke-dashoffset": 126 - circle_offset });
     }
 
     function renderError(errorStatus) {
@@ -133,8 +138,8 @@ $(() => {
         resultList.empty();
     }
 
-    function getTvList(query) {
-        const url = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&first_air_date_year=${query}&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false`
+    function getTvList(query, sortBy = 'popularity.desc') {
+        const url = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=${sortBy}&first_air_date_year=${query}&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false`
         return new Promise((resolve, reject) => {
             $.ajax({
                 url : url,
@@ -149,6 +154,22 @@ $(() => {
         })
     }
 
+    async function sortShows() {
+        const sortBy = $(this).data('sort-by');
+
+        const query = searchInput.val() ? searchInput.val() : 2020;
+
+        const result = await getTvList(query, sortBy)
+            .catch((error) => {
+                console.error(error)
+                return renderError(error.status);
+            });
+
+        if (!result) return;
+
+        renderResults(result);
+    }
+
     function isFavourited(isbn) {
         return favourited.includes(isbn)
     }
@@ -159,14 +180,13 @@ $(() => {
             tvs = results.map(data => ({
                 id: data.id,
                 name: data.name,
-                firstAirDate: data.first_air_date,
-                img: data.backdrop_path,
-                voteAverage: data.vote_average
+                img: data.poster_path,
+                voteAverage: data.vote_average,
+                isFavourite: isFavourited(data.id),
             }))
         } catch (e) {
-        console.error(e)
+            console.error(e)
         }
-
         return tvs
     }
 
@@ -195,6 +215,6 @@ $(() => {
 
     // event listeners
     searchForm.on('submit', searchTvs);
-
     buttonSave.on('click', saveAPIKey);
+    sortItems.on('click', sortShows);
 })
