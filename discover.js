@@ -3,7 +3,7 @@ const ERROR_MESSAGE = {
     '401': 'You are unauthorized. Please set your API KEY first.',
 }
 
-const bookItemURL = 'bookItems.html'
+const bookItemURL = 'bookItem.html'
 
 $(() => {
     // variables and selectors
@@ -61,15 +61,38 @@ $(() => {
 
         resultList.empty();
 
-        results.forEach((tv, index) => {
+        results.forEach((data, index) => {
             const showItem = $(`<li></li>`);
 
-            showItem.html(`
+            showItem
+
+                .addClass('list-group-item')
+                .html(`
+                <div class="card border-none">
+                    <div class="row no-gutters">
+                        <div class="col-sm-5">
+                            <a class="book-img" href="${bookItemURL}?id=${data.id}&title=${data.name}" target="_blank">
+                                <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/${data.backdrop_path}" alt="${data.name}">
+                            </a>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="card-body">
+                                <h4 class="card-title mr-4">
+                                <span class="mr-2 rank-chip">#${String(index + 1).padStart(2, '0')}</span>
+                                ${data.name}
+                                </h4>
+                                <h5 class="card-subtitle my-2"><span class="material-icons">
+                                trending_up
+                                </span>${data.voteAverage}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             `)
 
             resultList.append(showItem);
         })
-
 
     }
 
@@ -107,9 +130,9 @@ $(() => {
             tvs = results.map(data => ({
                 id: data.id,
                 name: data.name,
-                first_air_date: data.first_air_date,
+                firstAirDate: data.first_air_date,
                 img: data.backdrop_path,
-                vote_average: data.vote_average
+                voteAverage: data.vote_average
             }))
         } catch (e) {
         console.error(e)
